@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
     <title>TrulyExpenses {% block title %} {% endblock title %} </title>
 
 
@@ -19,42 +19,34 @@
 </head>
 
 <body>
-
+{% comment %} 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         {% comment %} <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">hamed company</a> {% endcomment %}
         {% comment %} <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> {% endcomment %}
     {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
   {% comment %} </button> {% endcomment %}
 
-    </header>
+    {% comment %} </header>  {% endcomment %}
 
-    <div class="container-fluid">
-        <div class="row">
+    {% comment %} <div class="container-fluid"> {% endcomment %}
+        {% comment %} <div class="row"> {% endcomment %}
 
 
 
-            <main class="col-md-9 ms-sm-auto col-md-12">
-                <div class="card">
+            <main role="main">
 
-                </div>
+                    {% block content %} 
+                    
+                    
+                    {% endblock content %}
 
-                <div class="col-md-3">
-
-                </div>
-                <div class="col-md-6">
-                    {% block content %} {% endblock content %}
-
-                </div>
-                <div class="col-md-3">
-
-                </div>
-
+                    
 
 
 
             </main>
-        </div>
-    </div>
+        {% comment %} </div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
 
 
     {% comment %}
