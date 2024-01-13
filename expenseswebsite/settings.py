@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # VARIABLES = ["Sag", "Gorbe"]
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_DIR = [os.path.join(BASE_DIR,'expenseswebsite/static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
@@ -134,6 +134,6 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# print (BASE_DIR)
 
 django_heroku.settings(locals())
