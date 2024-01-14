@@ -127,7 +127,7 @@ USE_TZ = True
 
 # VARIABLES = ["Sag", "Gorbe"]
 STATIC_URL = '/static/'
-STATIC_DIR = [os.path.join(BASE_DIR,'expenseswebsite/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'expenseswebsite/static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Default primary key field type
