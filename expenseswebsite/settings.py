@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
-
+from django.contrib import messages
 # impor psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -129,7 +129,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'expenseswebsite/static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -137,3 +139,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # print (BASE_DIR)
 
 django_heroku.settings(locals())
+

@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 import json
 from validate_email import validate_email
+from django.contrib import messages
 
 # Create your views here.
 
@@ -44,3 +45,38 @@ class UsernameValidationView(View):
 class RegisterationView(View):
     def get(self, request):
         return render(request, 'authentication/register.html')
+    def post(self, request):
+        # GET USER DATA
+        #VALIDATE
+        #CREATE A USER ACCOUNT
+        
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        context = {
+            'fieldValue':request.POST
+        }
+        
+        if not User.objects.filter(username=username).exists():
+            if not User.objects.filter(email=email).exists():
+                if len(password) < 8:
+                    messages.error(request, "password to short")
+                    return render(request, 'authentication/register.html',context)
+                
+                user = User.objects.create_user(username=username, email=email)
+                user.set_password(password)
+                user.save()
+                messages.success(request, "Account successfuly created")
+                return render(request, 'authentication/register.html')
+                
+                
+        return render(request, 'authentication/register.html')
+
+        
+        # messages.success(request, 'Success whatsapp success')
+        # # messages.warning(request, 'Success whatsapp warning')
+        # # messages.info(request, 'Success whatsapp info')
+        # # messages.error(request, 'Success whatsapp error')
+       
+        # return render(request, 'authentication/register.html')
