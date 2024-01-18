@@ -24,13 +24,7 @@ const handleToggleInput = (e) => {
     }
 };
 
-
-
 showPasswordToggle.addEventListener("click", handleToggleInput);
-
-
-
-
 
 
 emailField.addEventListener("keyup", (e) => {
@@ -61,13 +55,9 @@ emailField.addEventListener("keyup", (e) => {
 
             });
         // console.log(`${usernameVal.length}`);
-    }
+    } 
 
 });
-
-
-
-
 
 
 
@@ -104,6 +94,6 @@ usernameField.addEventListener("keyup", (e) => {
 
             });
         // console.log(`${usernameVal.length}`);
-    }
+    } 
 
 });
