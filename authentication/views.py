@@ -124,7 +124,9 @@ class VerificationView(View):
         return redirect('lohin')
     
 
-
+# class LoginView(View):
+#     def get(self, request, uidb64, token):
+#         return redirect('lohin', 'authentication/login.html')
 
 
 
