@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 import json
 from validate_email import validate_email
 from django.contrib import messages
-<<<<<<< HEAD
 from django.core.mail import EmailMessage,send_mail
 from django.contrib import auth
 from django.utils.encoding import force_bytes, DjangoUnicodeDecodeError
@@ -16,9 +15,9 @@ import django.utils.encoding
 from django.urls import reverse
 from .utils import token_generator
 
-=======
+
 from django.core.mail import EmailMessage
->>>>>>> c93acca (wwww)
+
 
 # Create your views here.
 
@@ -79,7 +78,7 @@ class RegisterationView(View):
                 
                 user = User.objects.create_user(username=username, email=email)
                 user.set_password(password)
-<<<<<<< HEAD
+
                 user.is_active=False
                 user.save()
                 #path_to_view
@@ -101,7 +100,7 @@ class RegisterationView(View):
                 )
                 email.send(fail_silently=False)
                 
-=======
+
                 user.is_active = False
                 user.save()
                 email_subject = "Ativation your account"
@@ -112,7 +111,7 @@ class RegisterationView(View):
                     [email],
                 )
                 email.send(fail_silently=False)
->>>>>>> c93acca (wwww)
+
                 messages.success(request, "Account successfuly created")
                 return render(request, 'authentication/register.html')
                 
