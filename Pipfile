@@ -11,6 +11,7 @@ heroku3 = "*"
 django = "*"
 validate-email = "*"
 six = "*"
+django-utils-six = "*"
 
 [dev-packages]
 

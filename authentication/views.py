@@ -8,13 +8,17 @@ from validate_email import validate_email
 from django.contrib import messages
 from django.core.mail import EmailMessage,send_mail
 from django.contrib import auth
-from django.utils.encoding import force_bytes, DjangoUnicodeDecodeError
+from django.utils.encoding import force_bytes, DjangoUnicodeDecodeError, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 import django.utils.encoding
 from django.urls import reverse
 from .utils import token_generator
+from django.core.mail import EmailMessage
 
+
+
+account_activation_token = token_generator
 
 # Create your views here.
 
@@ -75,6 +79,7 @@ class RegisterationView(View):
                 
                 user = User.objects.create_user(username=username, email=email)
                 user.set_password(password)
+
                 user.is_active=False
                 user.save()
                 #path_to_view
@@ -96,6 +101,18 @@ class RegisterationView(View):
                 )
                 email.send(fail_silently=False)
                 
+
+                user.is_active = False
+                user.save()
+                email_subject = "Ativation your account"
+                email_body = "hello dear you can useing your dashboard now"
+                email = EmailMessage(
+                    [email_subject],
+                    [email_body],
+                    [email],
+                )
+                email.send(fail_silently=False)
+
                 messages.success(request, "Account successfuly created")
                 return render(request, 'authentication/register.html')
                 
@@ -105,10 +122,26 @@ class RegisterationView(View):
 
 class VerificationView(View):
     def get(self, request, uidb64, token):
-        return redirect('lohin')
+        try:
+            id = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=id)
+            if not account_activation_token.check_token(user,token):
+                return redirect('login'+ '?message= '+ 'User already activate')
+            if user.is_active:
+                return redirect('login')
+            user.is_active = True
+            user.save()
+            messages.success(request,'Account activated successfully')
+            return redirect('login')
+        except Exception as ex:
+            pass
+        
+        return redirect('login')
     
 
-
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'authentication/login.html')
 
 
 
